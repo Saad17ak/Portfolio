@@ -377,10 +377,10 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var
       var inds=Object.keys(D.byInd).sort(function(a,b){return D.byInd[b]-D.byInd[a];}),cur="All",term="";
       show("All "+fmt(D.totals.accounts)+" accounts I worked in","Every client account where I posted in Slack, ranked by how much I worked on it.",
         '<div class="tools"><input class="search" id="acc-search" type="search" placeholder="Search by business name" aria-label="Search accounts"><div class="filters">'+['All'].concat(inds).map(function(k){return '<button type="button" class="chip" data-ind="'+esc(k)+'">'+esc(k)+'<small>'+(k==="All"?D.totals.accounts:D.byInd[k])+'</small></button>';}).join("")+'</div><p class="src" id="acc-count" style="margin:0"></p></div>'+
-        '<div class="tbl-wrap"><table><thead><tr><th>#</th><th>Account</th><th>Industry</th><th class="num">My messages</th><th>Active</th></tr></thead><tbody id="acc-rows"></tbody></table></div>');
+        '<div class="tbl-wrap"><table><thead><tr><th>#</th><th>Account</th><th>Industry</th><th>Active</th></tr></thead><tbody id="acc-rows"></tbody></table></div>');
       function render(){
         var t=term.toLowerCase(),rows=D.accounts.filter(function(a){return (cur==="All"||a.industry===cur)&&(!t||a.name.toLowerCase().indexOf(t)>-1);});
-        body.querySelector("#acc-rows").innerHTML=rows.map(function(a){return "<tr><td class='mono muted'>"+a.id.slice(2)+"</td><td class='name'>"+esc(a.name)+"</td><td>"+esc(a.industry)+"</td><td class='num'>"+a.msgs+"</td><td class='mono muted'>"+a.first.slice(0,7)+" → "+a.last.slice(0,7)+"</td></tr>";}).join("")||"<tr><td colspan='5' class='muted'>No account matches that search.</td></tr>";
+        body.querySelector("#acc-rows").innerHTML=rows.map(function(a){return "<tr><td class='mono muted'>"+a.id.slice(2)+"</td><td class='name'>"+esc(a.name)+"</td><td>"+esc(a.industry)+"</td><td class='mono muted'>"+a.first.slice(0,7)+" → "+a.last.slice(0,7)+"</td></tr>";}).join("")||"<tr><td colspan='4' class='muted'>No account matches that search.</td></tr>";
         body.querySelectorAll(".chip").forEach(function(c){c.setAttribute("aria-pressed",c.dataset.ind===cur);});
         body.querySelector("#acc-count").textContent="Showing "+fmt(rows.length)+" of "+fmt(D.totals.accounts);
       }
