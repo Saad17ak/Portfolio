@@ -52,7 +52,13 @@ button{font:inherit;color:inherit;cursor:pointer}
 nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--band);color:var(--band-ink);border-bottom:1px solid var(--band-line)}
 nav.top .in{display:flex;align-items:center;gap:20px;height:60px}
 .brand{display:flex;align-items:center;gap:10px;font:700 1rem var(--display);color:var(--band-ink);text-decoration:none;margin-right:auto}
-.mark{width:32px;height:32px;border-radius:9px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font:800 .85rem var(--display)}
+.mark{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);background:var(--band-2)}
+.me{display:flex;align-items:center;gap:16px}
+.me img{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid var(--accent);box-shadow:0 0 0 6px rgba(95,184,212,.15);flex:none;background:var(--band-2)}
+.me .who{display:grid;gap:8px}
+.me .who strong{font:700 1.15rem var(--display);color:var(--band-ink)}
+.contact-me{display:flex;align-items:center;gap:14px}
+.contact-me img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);flex:none}
 nav.top .links{display:flex;gap:18px}
 nav.top .links a{color:var(--band-muted);text-decoration:none;font-size:.88rem;font-weight:500}
 nav.top .links a:hover{color:var(--band-ink)}
@@ -62,7 +68,7 @@ nav.top .btn{background:var(--band-ink);color:var(--band)}
 .hero{background:radial-gradient(1200px 400px at 85% -10%,var(--band-2),transparent 70%),var(--band);color:var(--band-ink);padding-block:64px 120px}
 .hero .in{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:48px;align-items:center}
 .hero .eyebrow{color:var(--band-muted)}
-.hero h1{font-size:clamp(2.6rem,6.6vw,4.8rem);font-weight:800;letter-spacing:-.025em;margin-top:14px}
+.hero h1{font-size:clamp(2.6rem,6.6vw,4.8rem);font-weight:800;letter-spacing:-.025em;margin-top:26px}
 .hero h1 span{color:var(--accent)}
 .hero .lede{font-size:1.12rem;color:var(--band-muted);margin-top:18px;max-width:52ch}
 .hero .lede b{color:var(--band-ink);font-weight:600}
@@ -207,7 +213,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var
 
 <nav class="top gut" aria-label="Main">
   <div class="in">
-    <a class="brand" href="#top"><span class="mark">SK</span>Saad Khan</a>
+    <a class="brand" href="#top"><img class="mark" src="img/saad-face.jpg" alt="">Saad Khan</a>
     <div class="links"><a href="#accounts">Accounts</a><a href="#work">Work</a><a href="#career">Career</a><a href="#method">Method</a></div>
     <a class="btn small" href="#contact">Contact me</a>
   </div>
@@ -216,7 +222,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var
 <header class="hero gut" id="top">
   <div class="in">
     <div>
-      <div class="eyebrow">Account Manager · Client Success</div>
+      <div class="me"><img src="img/saad-face.jpg" alt="Portrait of Muhammad Saad Khan" width="84" height="84"><div class="who"><strong>Muhammad Saad Khan</strong><div class="eyebrow">Account Manager · Client Success</div></div></div>
       <h1>I keep clients <span>happy, heard</span> and getting results.</h1>
       <p class="lede">I'm Saad Khan. For four years I've worked remotely with US businesses. At SimpleTalk I ran a book of <b>up to 80 accounts</b>, worked across <b>432 client accounts</b> in Slack, and was promoted through <b>five roles in twenty months</b>.</p>
       <div class="cta"><a class="btn" href="#work">See my work</a><a class="btn ghost" href="#contact">Get in touch</a></div>
@@ -317,7 +323,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var
 
 <section class="contact-band gut" id="contact">
   <div class="in">
-    <div class="eyebrow" style="color:var(--band-muted)">Let's work together</div>
+    <div class="contact-me"><img src="img/saad-face.jpg" alt="" width="56" height="56"><div class="eyebrow" style="color:var(--band-muted)">Let's work together</div></div>
     <h2>Need an account manager who answers within the hour?</h2>
     <p>I'm based in Abbottabad, Pakistan, and I work US business hours.</p>
     <div class="contact">
