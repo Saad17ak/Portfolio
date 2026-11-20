@@ -1,0 +1,318 @@
+<meta charset="utf-8">
+<title>Saad Khan Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: single column, first person. Hero with the resolution-time figure, clickable proof tiles that open the real Slack data, Slack screenshots, career ladder, method, contact. */
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --ink:#14213a; --muted:#5b6578; --line:#dde2ea;
+  --accent:#1f6f8b; --accent-ink:#ffffff; --accent-soft:#e3f0f4; --warm:#c8792a; --bar:#1f6f8b; --bar-dim:#b9d3dc; --scrim:rgba(10,16,28,.55);
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Inter","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1520; --surface:#162030; --ink:#e7ecf3; --muted:#9aa6b8; --line:#26324a;
+  --accent:#5fb6d1; --accent-ink:#0f1520; --accent-soft:#18323e; --warm:#e3a05b; --bar:#5fb6d1; --bar-dim:#2b4a57; --scrim:rgba(0,0,0,.7); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1520; --surface:#162030; --ink:#e7ecf3; --muted:#9aa6b8; --line:#26324a;
+  --accent:#5fb6d1; --accent-ink:#0f1520; --accent-soft:#18323e; --warm:#e3a05b; --bar:#5fb6d1; --bar-dim:#2b4a57; --scrim:rgba(0,0,0,.7); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:960px;margin:0 auto;padding-block:56px 72px;display:grid;gap:64px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700}
+h3{font-size:1.1rem;font-weight:700}
+p{margin:0}
+.eyebrow{font:600 .75rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+section{display:grid;gap:24px}
+.sec-head{display:grid;gap:10px;max-width:65ch}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--warm);outline-offset:2px}
+
+.hero{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;align-items:end}
+.hero h1{font-size:clamp(2.6rem,7vw,4.6rem);font-weight:800;letter-spacing:-.02em}
+.hero .lede{font-size:1.15rem;color:var(--muted);margin-top:14px;max-width:48ch}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.hero .tags{margin-top:22px}
+.tag{font:500 .8rem/1 var(--body);padding:7px 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.drop{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;display:grid;gap:10px}
+.drop .fig{display:flex;align-items:baseline;gap:14px;font-family:var(--display);font-weight:800}
+.drop .from{font-size:2.2rem;color:var(--muted);text-decoration:line-through;text-decoration-thickness:3px;text-decoration-color:var(--warm)}
+.drop .to{font-size:4rem;color:var(--accent);line-height:1}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stat{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:6px;align-content:start;transition:border-color .15s,transform .15s}
+.stat:hover{border-color:var(--accent);transform:translateY(-2px)}
+.stat b{font:700 2rem/1 var(--display);font-variant-numeric:tabular-nums}
+.stat span{font-size:.85rem;color:var(--muted)}
+.stat em{font:600 .75rem var(--mono);font-style:normal;color:var(--accent)}
+.src{font-size:.8rem;color:var(--muted)}
+
+.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.shot{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0;overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+.shot:hover{border-color:var(--accent)}
+.shot .frame{height:220px;overflow:hidden;background:#fff;border-bottom:1px solid var(--line);position:relative}
+.shot .frame img{width:100%;display:block}
+.shot .frame::after{content:"";position:absolute;inset:auto 0 0;height:60px;background:linear-gradient(transparent,rgba(255,255,255,.95))}
+.shot .cap{padding:16px 18px;display:grid;gap:6px}
+.shot .meta{font:500 .75rem var(--mono);color:var(--muted)}
+.shot .open{font:600 .8rem var(--body);color:var(--accent)}
+
+.ladder{display:grid;border-left:2px solid var(--line);margin-left:6px}
+.rung{position:relative;padding:0 0 26px 26px;display:grid;gap:6px}
+.rung::before{content:"";position:absolute;left:-8px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+.rung.top::before{background:var(--accent)}
+.rung .when{font:500 .8rem var(--mono);color:var(--muted)}
+.rung p{max-width:65ch}
+
+.method{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.sop{background:var(--accent-soft);border-radius:12px;padding:20px;display:grid;gap:6px}
+.sop b{font:800 2.2rem/1 var(--display);color:var(--accent)}
+.mood{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.85rem}
+.mood i{font-style:normal;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--surface)}
+.mood i.hot{border-color:var(--warm);color:var(--warm)}
+
+.details{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.details ul{margin:12px 0 0;padding-left:18px;display:grid;gap:4px}
+.contact{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.contact code{font:500 .95rem var(--mono);background:var(--surface);border:1px solid var(--line);padding:8px 12px;border-radius:8px;user-select:all}
+.btn{font:600 .85rem var(--body);color:var(--accent-ink);background:var(--accent);border:0;border-radius:8px;padding:9px 14px}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+footer{font-size:.8rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+
+/* Drawer */
+dialog{border:0;padding:0;background:var(--surface);color:var(--ink);border-radius:16px;width:min(880px,calc(100vw - 32px));max-height:calc(100dvh - 48px);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+dialog::backdrop{background:var(--scrim)}
+.dlg{display:grid;grid-template-rows:auto 1fr;max-height:calc(100dvh - 48px)}
+.dlg-head{display:flex;justify-content:space-between;gap:16px;align-items:start;padding:20px 22px;border-bottom:1px solid var(--line)}
+.dlg-head .sub{font-size:.85rem;color:var(--muted);margin-top:4px}
+.dlg-body{overflow:auto;padding:20px 22px;display:grid;gap:16px;align-content:start}
+.x{background:transparent;border:1px solid var(--line);border-radius:8px;width:36px;height:36px;font-size:1.2rem;line-height:1;flex:none}
+.filters{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:500 .8rem var(--body);padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.chip small{opacity:.7;margin-left:4px;font-family:var(--mono)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font:600 .72rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--bg);position:sticky;top:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono)}
+.fb{display:grid;gap:8px;padding:14px 0;border-bottom:1px solid var(--line)}
+.fb .q{font-family:var(--display);font-size:1.15rem;font-weight:500}
+.fb .ctx{font-size:.85rem;color:var(--muted);padding-left:12px;border-left:2px solid var(--line)}
+.fb .meta{font:500 .75rem var(--mono);color:var(--muted)}
+.big-shot{background:#fff;border-radius:10px;border:1px solid var(--line)}
+.big-shot img{display:block;width:100%}
+.chart svg{display:block;width:100%;min-width:560px;height:auto}
+.chart svg text{fill:var(--muted);font:11px var(--mono)}
+.chart{overflow-x:auto}
+.loading{color:var(--muted);font-size:.9rem}
+
+@media (max-width:760px){
+  .hero,.shots,.method,.details{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .drop .to{font-size:3.2rem}
+}
+@media (prefers-reduced-motion:reduce){.stat{transition:none}.stat:hover{transform:none}}
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Account Manager · Client Success</div>
+      <h1>Hi, I'm Saad Khan.</h1>
+      <p class="lede">I keep small business clients happy, heard and getting results. For four years I've worked remotely with US clients, and for twenty months at SimpleTalk I ran a book of up to 80 accounts while being promoted through five roles.</p>
+      <div class="tags">
+        <span class="tag">GoHighLevel</span><span class="tag">Slack</span><span class="tag">Google Sheets</span><span class="tag">AI voice and chat agents</span><span class="tag">I work US hours</span>
+      </div>
+    </div>
+    <aside class="drop" aria-label="Issue resolution time">
+      <div class="eyebrow">My issue resolution time</div>
+      <div class="fig"><span class="from">72h</span><span class="to">24h</span></div>
+      <p class="muted">I built an issue log, found where delays happened, and helped turn it into team SOPs. My first reply to clients now comes in under an hour.</p>
+    </aside>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The proof</div>
+      <h2>My numbers, straight from Slack</h2>
+      <p class="muted">Every figure below comes from the SimpleTalk Slack workspace archive. Click any of them to see the records behind it.</p>
+    </div>
+    <div class="stats">
+      <button class="stat" type="button" id="open-accounts" data-open="accounts"><b class="mono" data-total="accounts">432</b><span>client accounts I worked in</span><em>See the accounts →</em></button>
+      <button class="stat" type="button" id="open-feedback" data-open="feedback"><b class="mono" data-total="feedback">…</b><span>client thank-yous right after my replies</span><em>Read what they said →</em></button>
+      <button class="stat" type="button" id="open-activity" data-open="activity"><b class="mono" data-total="messages">1,726</b><span>messages I sent, Jul 2025 to Sep 2026</span><em>See month by month →</em></button>
+      <button class="stat" type="button" id="open-tagged" data-open="tagged"><b class="mono" data-total="tagged">1,507</b><span>times clients and teammates tagged me</span><em>See the breakdown →</em></button>
+    </div>
+    <p class="src">Client names, contact details and links are hidden to protect the businesses I worked with. Accounts are listed by industry.</p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Real conversations</div>
+      <h2>How I handle clients day to day</h2>
+      <p class="muted">Screenshots of real Slack threads with my clients. I blurred their names, but everything I wrote is exactly as I sent it. Click one to read the full thread.</p>
+    </div>
+    <div class="shots" id="shots"></div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">My career at SimpleTalk</div>
+      <h2>Five roles in twenty months</h2>
+      <p class="muted">SimpleTalk is a SaaS and AI platform for small and mid-sized US businesses. Each promotion gave me more accounts or more people to lead.</p>
+    </div>
+    <div class="ladder">
+      <div class="rung top"><span class="when">Aug 2026 – Oct 2026</span><h3>Team Lead, AI Analysts and Prompt Engineers</h3>
+        <p>I led a team of 5. I introduced SOPs and progress tracking that cut our delivery time from 72 to 48 hours and reduced revisions by 20%.</p></div>
+      <div class="rung"><span class="when">Feb 2026 – Jul 2026</span><h3>AI Analyst and Prompt Engineer</h3>
+        <p>I managed up to 80 clients. I built GoHighLevel workflows and AI agents around each client's business, took client calls every day and handled escalations.</p></div>
+      <div class="rung"><span class="when">Oct 2025 – Feb 2026</span><h3>Customer Success Manager</h3>
+        <p>I was the main point of contact for 75 accounts. I oversaw campaign launches, watched performance, tracked client mood to catch at-risk accounts early, and helped write the Slack SOPs that took resolution from about 72 to 24 hours.</p></div>
+      <div class="rung"><span class="when">Jun 2025 – Sep 2025</span><h3>Onboarding Specialist</h3>
+        <p>I onboarded 110 clients through discovery calls, and redesigned our discovery document, which cut implementation errors by 15%.</p></div>
+      <div class="rung"><span class="when">Feb 2025 – May 2025</span><h3>AI Analyst and Prompt Engineer</h3>
+        <p>I started on the build side, writing AI agent prompts and GoHighLevel automations for new clients.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">How I run a book of accounts</div>
+      <h2>Spot risk early, answer fast, escalate with a date</h2>
+      <p class="muted">These are the response standards I helped write into my team's Slack SOPs.</p>
+    </div>
+    <div class="method">
+      <div class="sop"><b class="mono">40 min</b><span>to reply to any client message</span></div>
+      <div class="sop"><b class="mono">2 hrs</b><span>to test a change a client asked for</span></div>
+      <div class="sop"><b class="mono">ETA</b><span>on every escalation, so no client is left guessing</span></div>
+    </div>
+    <p style="max-width:65ch">I tag every client by mood and log every issue by time of day in Google Sheets. When an account starts sliding toward frustrated, I take it to a team lead before it turns into churn.</p>
+    <div class="mood" aria-label="Client mood scale">
+      <i>Easygoing</i><span class="muted">→</span><i>Neutral</i><span class="muted">→</span><i>Concerned</i><span class="muted">→</span><i>Frustrated</i><span class="muted">→</span><i class="hot">Extremely frustrated · escalate</i>
+    </div>
+  </section>
+
+  <section>
+    <div class="details">
+      <div><div class="eyebrow">What I'm good at</div>
+        <ul><li>Account management and retention</li><li>Client onboarding and discovery</li><li>Campaign launch and monitoring</li><li>Issue trend analysis and reporting</li><li>Escalations and problem solving</li></ul></div>
+      <div><div class="eyebrow">Before SimpleTalk</div>
+        <ul><li>HR Assistant, PREMIER AA (US) · 2023–24</li><li>Background Screener, WebWisee (UK) · 2023</li><li>Investigative Assistant, De Risc · 2022</li></ul></div>
+      <div><div class="eyebrow">Education and languages</div>
+        <ul><li>BS Economics, NUST Islamabad · 2022</li><li>English (professional)</li><li>Urdu and Pushto (native)</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Let's work together</div>
+      <h2>Looking for an account manager who answers within the hour?</h2>
+      <p class="muted">I'm based in Abbottabad, Pakistan, and I work US business hours.</p>
+    </div>
+    <div class="contact">
+      <code id="email">17aksaad@gmail.com</code><button class="btn" type="button" id="copy-email" data-copy="email">Copy email</button>
+      <code id="phone">+92 314 9904461</code><button class="btn ghost" type="button" id="copy-phone" data-copy="phone">Copy phone</button>
+    </div>
+  </section>
+
+  <footer>Activity figures and screenshots come from the archived SimpleTalk Slack workspace, July 2025 to September 2026, exported November 20, 2026. Client names and details are hidden.</footer>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlg-title">
+  <div class="dlg">
+    <div class="dlg-head"><div><h2 id="dlg-title" style="font-size:1.4rem"></h2><p class="sub" id="dlg-sub"></p></div><button class="x" type="button" id="dlg-close" aria-label="Close">×</button></div>
+    <div class="dlg-body" id="dlg-body"></div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  var SHOTS=[
+    {img:"shots/realestate-request.png",title:"A new feature, built the same day",meta:"Real estate team · Mar 2026",text:"The client wanted their AI to stop pushing curious homeowners into full listing appointments. I rebuilt the flow that evening.",result:"“PERFECT! Thank you so much!”"},
+    {img:"shots/law-escalation.png",title:"Turning an angry escalation around",meta:"Law firm · Apr 2026",text:"A go-live deadline was days away and the client was frustrated. I asked for specifics, fixed every agent, and had them testing the same night.",result:"“Thank you! We'll test them right away.”"},
+    {img:"shots/cleaning-changes.png",title:"Clear, itemised updates",meta:"Home cleaning · Apr 2026",text:"Four test-call issues came in. I fixed all four, explained each change in plain words, and asked for the one detail I still needed.",result:"“Thank you for the updates!”"},
+    {img:"shots/marketing-objections.png",title:"Fixing call drop-offs",meta:"Marketing agency · Mar 2026",text:"The client saw calls dropping in the first 20 to 50 seconds. I rebuilt objection handling, tightened human transfer and cut repetition.",result:"“Good stuff, thanks guys for the updates.”"},
+    {img:"shots/realestate-fix.png",title:"Fast fixes during client testing",meta:"Real estate team · Mar 2026",text:"Within 30 minutes of a bad test call I had fixed the booking jump and asked how to pronounce the owner's name so it never happened again.",result:"“You guys are the best!”"},
+    {img:"shots/law-limitation.png",title:"Flagging a limit before it bites",meta:"Law firm · Apr 2026",text:"I warned the client about a call-transfer limitation before launch and proposed a workaround, instead of letting them find it live.",result:"“Thank you for letting us know.”"},
+    {img:"shots/fitness-question.png",title:"Asking the right question first",meta:"Fitness studio · Mar 2026",text:"Before building, I checked whether the script actually matched what the client wanted. It didn't, and the question saved a rebuild.",result:"“Great question.”"}
+  ];
+  var D=null, dlg=document.getElementById("dlg"), body=document.getElementById("dlg-body");
+  var fmt=function(n){return Number(n).toLocaleString("en-US");};
+  var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});};
+  var mon=function(m){var p=m.split("-");return new Date(+p[0],+p[1]-1,1).toLocaleDateString("en-US",{month:"short",year:"numeric"});};
+
+  var grid=document.getElementById("shots");
+  SHOTS.forEach(function(s,i){
+    var b=document.createElement("button");b.type="button";b.className="shot";b.id="shot-"+i;
+    b.innerHTML='<div class="frame"><img loading="lazy" src="'+s.img+'" alt="Slack thread: '+esc(s.title)+'"></div><div class="cap"><span class="meta">'+esc(s.meta)+'</span><h3>'+esc(s.title)+'</h3><p class="muted">'+esc(s.text)+'</p><span class="open">Read the full thread →</span></div>';
+    b.addEventListener("click",function(){openShot(i);});grid.appendChild(b);
+  });
+
+  function show(title,sub,html){document.getElementById("dlg-title").textContent=title;document.getElementById("dlg-sub").textContent=sub;body.innerHTML=html;body.scrollTop=0;if(!dlg.open)dlg.showModal();}
+  document.getElementById("dlg-close").addEventListener("click",function(){dlg.close();});
+  dlg.addEventListener("click",function(e){if(e.target===dlg)dlg.close();});
+
+  function openShot(i){var s=SHOTS[i];show(s.title,s.meta,'<p>'+esc(s.text)+'</p><p class="fb q" style="padding:0;border:0">'+esc(s.result)+'</p><div class="big-shot"><img src="'+s.img+'" alt="Slack thread: '+esc(s.title)+'"></div>');}
+
+  var views={
+    accounts:function(){
+      var inds=Object.keys(D.byInd).sort(function(a,b){return D.byInd[b]-D.byInd[a];}),cur="All";
+      function render(){
+        var rows=D.accounts.filter(function(a){return cur==="All"||a.industry===cur;});
+        body.querySelector("#acc-rows").innerHTML=rows.map(function(a){return "<tr><td class='mono'>"+a.id+"</td><td>"+esc(a.industry)+"</td><td class='num'>"+a.msgs+"</td><td class='num'>"+a.toClient+"</td><td class='mono'>"+a.first+"</td><td class='mono'>"+a.last+"</td></tr>";}).join("");
+        body.querySelectorAll(".chip").forEach(function(c){c.setAttribute("aria-pressed",c.dataset.ind===cur);});
+        body.querySelector("#acc-count").textContent=fmt(rows.length)+" accounts";
+      }
+      show("The "+fmt(D.totals.accounts)+" accounts I worked in","Every client channel where I posted, ranked by how many messages I sent. Client names are hidden.",
+        '<div class="filters">'+['All'].concat(inds).map(function(k){return '<button type="button" class="chip" data-ind="'+esc(k)+'">'+esc(k)+'<small>'+(k==="All"?D.totals.accounts:D.byInd[k])+'</small></button>';}).join("")+'</div>'+
+        '<p class="src" id="acc-count"></p><div class="tbl-wrap" style="max-height:52vh;overflow:auto"><table><thead><tr><th>Account</th><th>Industry</th><th class="num">My messages</th><th class="num">Direct to client</th><th>First</th><th>Last</th></tr></thead><tbody id="acc-rows"></tbody></table></div>');
+      body.querySelectorAll(".chip").forEach(function(c){c.addEventListener("click",function(){cur=c.dataset.ind;render();});});
+      render();
+    },
+    feedback:function(){
+      show("What clients said right after my replies",fmt(D.feedback.length)+" positive client replies that came within two days of a message from me, newest first. Names and links are hidden.",
+        D.feedback.map(function(f){return '<div class="fb"><span class="meta">'+f.date+' · '+esc(f.industry)+'</span><p class="q">“'+esc(f.client)+'”</p><p class="ctx"><b>My message before it:</b> '+esc(f.saad)+'</p></div>';}).join(""));
+    },
+    activity:function(){
+      var m=D.monthly,max=Math.ceil(Math.max.apply(null,m.map(function(x){return x.n;}))/100)*100,W=720,H=260,L=40,R=10,T=20,B=44,pw=W-L-R,ph=H-T-B,bw=pw/m.length;
+      var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Messages I sent per month">';
+      for(var v=0;v<=max;v+=100){var y=T+ph-(v/max)*ph;s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'" stroke="var(--line)"/><text x="'+(L-8)+'" y="'+(y+4)+'" text-anchor="end">'+v+'</text>';}
+      m.forEach(function(d,i){var h=(d.n/max)*ph,x=L+i*bw+bw*.18,w=bw*.64,y=T+ph-h,p=d.m.split("-");
+        s+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+Math.max(h,.5)+'" rx="3" fill="'+(d.n>=200?'var(--bar)':'var(--bar-dim)')+'"><title>'+mon(d.m)+': '+d.n+' messages in '+d.ch+' channels</title></rect>';
+        s+='<text x="'+(x+w/2)+'" y="'+(T+ph+16)+'" text-anchor="middle">'+new Date(+p[0],+p[1]-1,1).toLocaleDateString("en-US",{month:"short"})+'</text>';
+        if(i===0||p[1]==="01")s+='<text x="'+(x+w/2)+'" y="'+(T+ph+32)+'" text-anchor="middle" style="fill:var(--ink);font-weight:600">'+p[0]+'</text>';});
+      s+='</svg>';
+      show("My Slack activity, month by month",fmt(D.totals.messages)+" messages between July 2025 and September 2026. Dark bars are months with 200 or more.",
+        '<div class="chart">'+s+'</div><div class="tbl-wrap"><table><thead><tr><th>Month</th><th class="num">Messages</th><th class="num">Channels</th></tr></thead><tbody>'+
+        m.slice().reverse().map(function(d){return '<tr><td>'+mon(d.m)+'</td><td class="num">'+d.n+'</td><td class="num">'+d.ch+'</td></tr>';}).join("")+'</tbody></table></div>');
+    },
+    tagged:function(){
+      var t=D.totals;
+      show("How often people came to me","Every message where someone tagged me by name in Slack.",
+        '<div class="stats" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))"><div class="stat"><b class="mono">'+fmt(t.tagged)+'</b><span>times I was tagged in total</span></div><div class="stat"><b class="mono">'+fmt(t.tagClients)+'</b><span>of those came from clients in shared channels</span></div><div class="stat"><b class="mono">'+fmt(t.tagged-t.tagClients)+'</b><span>came from teammates handing work to me</span></div></div>'+
+        '<p>Clients tagged me directly when they wanted something fixed, and my team leads tagged me when a client needed a prompt change or an escalation handled. Being the person people name is what account management looks like day to day.</p>');
+    }
+  };
+  document.querySelectorAll("[data-open]").forEach(function(b){b.addEventListener("click",function(){
+    if(!D){show("Loading…","",'<p class="loading">Loading the Slack data…</p>');return;}
+    views[b.dataset.open]();});});
+
+  fetch("data.json").then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(d){
+    D=d;document.querySelectorAll("[data-total]").forEach(function(el){var v=d.totals[el.dataset.total];if(v!=null)el.textContent=fmt(v);});
+  }).catch(function(){document.querySelectorAll("[data-total='feedback']").forEach(function(el){el.textContent="—";});});
+
+  document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){
+    var t=document.getElementById(b.dataset.copy),orig=b.textContent;
+    function sel(){var r=document.createRange();r.selectNodeContents(t);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selected, press Ctrl+C";setTimeout(function(){b.textContent=orig;},2000);}
+    try{navigator.clipboard.writeText(t.textContent).then(function(){b.textContent="Copied";setTimeout(function(){b.textContent=orig;},1500);},sel);}catch(e){sel();}
+  });});
+})();
+</script>
