@@ -147,7 +147,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var
     </div>
     <div class="stats">
       <button class="stat" type="button" id="open-accounts" data-open="accounts"><b class="mono" data-total="accounts">432</b><span>client accounts I worked in</span><em>See the accounts →</em></button>
-      <button class="stat" type="button" id="open-feedback" data-open="feedback"><b class="mono" data-total="feedback">…</b><span>client thank-yous right after my replies</span><em>Read what they said →</em></button>
+      <button class="stat" type="button" id="open-feedback" data-open="feedback"><b class="mono" data-total="feedback">…</b><span>updates I delivered that clients signed off on</span><em>See the updates →</em></button>
       <button class="stat" type="button" id="open-activity" data-open="activity"><b class="mono" data-total="messages">1,726</b><span>messages I sent, Jul 2025 to Sep 2026</span><em>See month by month →</em></button>
       <button class="stat" type="button" id="open-tagged" data-open="tagged"><b class="mono" data-total="tagged">1,507</b><span>times clients and teammates tagged me</span><em>See the breakdown →</em></button>
     </div>
@@ -260,7 +260,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var
   document.getElementById("dlg-close").addEventListener("click",function(){dlg.close();});
   dlg.addEventListener("click",function(e){if(e.target===dlg)dlg.close();});
 
-  function openShot(i){var s=SHOTS[i];show(s.title,s.meta,'<p>'+esc(s.text)+'</p><p class="fb q" style="padding:0;border:0">'+esc(s.result)+'</p><div class="big-shot"><img src="'+s.img+'" alt="Slack thread: '+esc(s.title)+'"></div>');}
+  function openShot(i){var s=SHOTS[i];show(s.title,s.meta,'<p>'+esc(s.text)+'</p><p class="ctx muted" style="padding-left:12px;border-left:2px solid var(--line)">Client reply: '+esc(s.result)+'</p><div class="big-shot"><img src="'+s.img+'" alt="Slack thread: '+esc(s.title)+'"></div>');}
 
   var views={
     accounts:function(){
@@ -278,8 +278,8 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var
       render();
     },
     feedback:function(){
-      show("What clients said right after my replies",fmt(D.feedback.length)+" positive client replies that came within two days of a message from me, newest first. Names and links are hidden.",
-        D.feedback.map(function(f){return '<div class="fb"><span class="meta">'+f.date+' · '+esc(f.industry)+'</span><p class="q">“'+esc(f.client)+'”</p><p class="ctx"><b>My message before it:</b> '+esc(f.saad)+'</p></div>';}).join(""));
+      show("Updates clients signed off on",fmt(D.feedback.length)+" times a client confirmed an update of mine within two days, newest first. Client names and links are hidden.",
+        D.feedback.map(function(f){return '<div class="fb"><span class="meta">'+f.date+' · '+esc(f.industry)+'</span><p>'+esc(f.saad)+'</p><p class="ctx">Client reply: '+esc(f.client)+'</p></div>';}).join(""));
     },
     activity:function(){
       var m=D.monthly,max=Math.ceil(Math.max.apply(null,m.map(function(x){return x.n;}))/100)*100,W=720,H=260,L=40,R=10,T=20,B=44,pw=W-L-R,ph=H-T-B,bw=pw/m.length;
